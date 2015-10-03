@@ -22,4 +22,28 @@ router.get('/login', function(req, res, next) {
   });
 });
 
+router.post('/users/register', function(req, res, next) {
+	var name = req.body.name;
+	var email = req.body.email;
+	var username = req.body.username;
+	var password = req.body.password;
+	var password2 = req.body.password2;
+});
+
+// Check for image
+
+if(req.files.profileimage){
+	console.log('Uploading File...');
+
+	// File Info 
+	var profileImageOriginalName = req.files.profileimage.originalname;
+	var profileImageName = req.files.profileimage.name;
+	var profileImageMime = req.files.profileimage.mimetype;
+	var profileImagePath = req.files.profileImage.path;
+	var profileImageExt = req.files.profileimage.extension;
+	var profileImageSize = req.files.profileimage.size;
+} else {
+	var profileImageName = 'noimage.png'
+}
+
 module.exports = router;
