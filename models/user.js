@@ -11,7 +11,7 @@ var UserSchema = mongoose.Schema({
 		index: true
 	},
 	password: {
-		type: String
+		type: String, required: true, bcrypt: true
 	},
 	email: {
 		type: String
@@ -30,6 +30,8 @@ module.exports.createUser = function(newUser, callback){
 	bcrypt.hash(newUser.password, 10, function(err, hash){
 		if(err) throw err;
 		// Set Hashed Password
+		newUser.password = hash;
+		// Create User
+		newUser.save(callback);
 	});	
-	newUser.save(callback);
 }
